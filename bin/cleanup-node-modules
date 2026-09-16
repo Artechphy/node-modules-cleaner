@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+PROJECT_DIR=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
+
+exec python3 "$PROJECT_DIR/src/node_modules_cleaner.py" \
+  --exclude-file "$PROJECT_DIR/config/excludes.txt" \
+  --report-dir "$PROJECT_DIR/reports/runtime" \
+  "$@"

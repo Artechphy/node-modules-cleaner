@@ -1,0 +1,4 @@
+# Paths are relative to the configured scan root and support glob syntax.
+# Put one pattern on each line. Examples:
+# archived-project/**
+# client/important-demo/**

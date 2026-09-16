@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 2,
+  "modelProfiles": {
+    "planner": {"primary": "current-codex-session", "fallbacks": []},
+    "general-executor": {"primary": "current-codex-session", "fallbacks": []},
+    "verifier": {"primary": "current-codex-session", "fallbacks": []}
+  },
+  "inputs": [
+    {"id": "IN-0001", "path": "docs/requirements.md"}
+  ],
+  "requirements": [
+    {"id": "REQ-CLEAN-001", "kind": "implementation", "priority": "Must", "state": "ACCEPTED", "sourceIds": ["IN-0001"], "goalId": "GOAL-MOD-001"},
+    {"id": "REQ-CLEAN-002", "kind": "implementation", "priority": "Must", "state": "ACCEPTED", "sourceIds": ["IN-0001"], "goalId": "GOAL-MOD-001"},
+    {"id": "REQ-SAFE-001", "kind": "implementation", "priority": "Must", "state": "ACCEPTED", "sourceIds": ["IN-0001"], "goalId": "GOAL-MOD-001"},
+    {"id": "REQ-CI-001", "kind": "implementation", "priority": "Must", "state": "ACCEPTED", "sourceIds": ["IN-0001"], "goalId": "GOAL-MOD-002"}
+  ],
+  "goals": [
+    {"id": "GOAL-SYS-001", "level": "system", "parentId": null, "state": "ACCEPTED"},
+    {"id": "GOAL-MOD-001", "level": "module", "parentId": "GOAL-SYS-001", "state": "ACCEPTED"},
+    {"id": "GOAL-MOD-002", "level": "module", "parentId": "GOAL-SYS-001", "state": "ACCEPTED"},
+    {"id": "GOAL-ATM-001", "level": "atom", "parentId": "GOAL-SYS-001", "state": "ACCEPTED"}
+  ],
+  "atoms": [
+    {
+      "id": "ATOM-CLEAN-001",
+      "goalId": "GOAL-ATM-001",
+      "requirementIds": ["REQ-CLEAN-001", "REQ-CLEAN-002", "REQ-SAFE-001", "REQ-CI-001"],
+      "dependsOn": [],
+      "state": "ACCEPTED",
+      "writeScope": ["node-modules-cleaner/**"],
+      "modelRoute": {
+        "plannerProfile": "planner",
+        "executorProfile": "general-executor",
+        "verifierProfile": "verifier",
+        "budgetClass": "balanced"
+      },
+      "evidenceIds": ["EVD-0001"],
+      "reportPath": ".agent-native/reports/ATOM-CLEAN-001.md"
+    }
+  ],
+  "mappings": [
+    {"requirementId": "REQ-CLEAN-001", "atomId": "ATOM-CLEAN-001", "role": "OWNER"},
+    {"requirementId": "REQ-CLEAN-002", "atomId": "ATOM-CLEAN-001", "role": "OWNER"},
+    {"requirementId": "REQ-SAFE-001", "atomId": "ATOM-CLEAN-001", "role": "OWNER"},
+    {"requirementId": "REQ-CI-001", "atomId": "ATOM-CLEAN-001", "role": "OWNER"}
+  ],
+  "evidence": [
+    {"id": "EVD-0001", "path": ".agent-native/evidence/EVD-0001.md", "freshness": "CURRENT"}
+  ],
+  "feedback": [],
+  "releases": [
+    {"id": "REL-0001", "path": ".agent-native/releases/REL-0001.md", "status": "READY"}
+  ]
+}
