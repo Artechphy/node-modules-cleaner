@@ -3,3 +3,4 @@ __pycache__/
 reports/runtime/*.json
 !reports/runtime/.gitkeep
 docs/requirements.md
+.agent-native/
